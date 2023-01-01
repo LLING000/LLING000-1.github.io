@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html";charset="UTF-8">
+    <meta name="viewport" content="width=device-width",
+          initial-scale="1,maximum-scale=1,user-scalable=no">
+    <title>阿里音乐大数据可视化平台</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            position:relative;
+        }
+        .navbar label{
+            position:absolute;
+            top:0;
+            width:100vw;
+            height:60px;
+            color:#ededed;
+            background-color:#2a3f54;
+            cursor:pointer;
+            transition:all 0.5s;
+        }
+        .title{
+            font-size:30px;
+            text-align:center;
+            font-family:Lucida Calligraphy;
+            font-weight:bold;
+            top:8px;
+        }
+        #chart-artist10{
+            height: 300px;
+            width: 500px;
+            top:100px;
+            left:10px;
+            position: absolute;
+        }
+        #chart-user10{
+            height: 300px;
+            width: 500px;
+            top:100px;
+            left:1000px;
+            position: absolute;
+        }
+        #chart-year{
+            height: 280px;
+            width: 500px;
+            top:100px;
+            left:500px;
+            position: absolute;
+        }
+        #chart-songs10{
+            height: 300px;
+            width: 850px;
+            top:420px;
+            left:0px;
+            position: absolute;
+        }
+        #chart-gender{
+            height: 300px;
+            width: 600px;
+            top:420px;
+            left:880px;
+            position: absolute;
+        }
+    </style>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <label class="checkbox">
+            <p class="title">阿里音乐大数据可视化平台</p>
+        </label>
+    </div>
+
+    <div id="chart-gender"></div>
+    <div id="chart-songs10"></div>
+    <div id="chart-artist10"></div>
+    <div id="chart-user10"></div>
+    <div id="chart-year"></div>
+
+    <script>
+        var mychart = echarts.init(document.getElementById('chart-artist10'));
+
+        var option = {
+        title: {
+            text: '发布歌曲TOP10',
+            subtext: 'Released Songs',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow'
+            }
+        },
+        grid: {
+            left: '5%',
+            right: '5%',
+            bottom: '20%',
+            containLabel: true
+        },
+        xAxis: [
+        {
+          type: 'category',
+          data: ['4248', 'acf9', '9af3', '7e71', 'f823', '4741', 'fc54', '45e2', '49bb', '05f5']
+        }
+        ],
+        yAxis: [
+        {
+          type: 'value'
+        }
+        ],
+        series: [
+        {
+          name: '发行歌曲',
+          barWidth: '40%',
+          data: [1912, 1861, 1328, 1087, 987, 943, 902, 722, 685, 675],
+          type: 'bar'
+        }
+        ]
+        };
+        option && mychart.setOption(option);
+    </script>
+
+    <script>
+        var mychart = echarts.init(document.getElementById('chart-user10'));
+
+        var option = {
+        title: {
+            text: '忠实用户TOP10',
+            subtext: 'Loyal Users',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow'
+            }
+        },
+        grid: {
+            left: '5%',
+            right: '5%',
+            bottom: '20%',
+            containLabel: true
+        },
+        xAxis: [
+        {
+          type: 'category',
+          data: ['a57b', '9db7', '3e52', '70cd', 'cd80', 'c002', '4ee3', '73f2', '3057', '5e62']
+        }
+        ],
+        yAxis: [
+        {
+          type: 'value'
+        }
+        ],
+        series: [
+        {
+          name: '使用次数',
+          barWidth: '40%',
+          data: [47787, 30097, 11665, 9325, 8019, 7737, 7485, 6421, 6028, 6017],
+          type: 'bar'
+        }
+        ]
+        };
+        option && mychart.setOption(option);
+    </script>
+
+    <script>
+        var mychart = echarts.init(document.getElementById('chart-year'));
+
+        option = {
+          title: {
+            text: '阿里音乐2015年年度热度',
+            left: 'center'
+          },
+          tooltip: {
+            trigger: 'axis'
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['3月', '4月', '5月', '6月', '7月', '8月']
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [
+            {
+              name: '月热度',
+              type: 'line',
+              stack: 'Total',
+              data: [2301198, 2448873, 2727810, 2710009, 2876148, 2820049]
+            }
+          ]
+        };
+        option && mychart.setOption(option);
+    </script>
+
+    <script>
+        var mychart = echarts.init(document.getElementById('chart-gender'));
+
+        var option = {
+          tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+          },
+          legend: {
+            data: [
+              'Male',
+              'Female',
+              'Group',
+            ],
+            x:'right'
+          },
+          series: [
+            {
+              name: '歌手数量',
+              type: 'pie',
+              selectedMode: 'single',
+              radius: [0, '30%'],
+              label: {
+                position: 'inner',
+                fontSize: 14
+              },
+              labelLine: {
+                show: false
+              },
+              data: [
+                { value: 30, name: 'Male' },
+                { value: 46, name: 'Female' },
+                { value: 24, name: 'Group' },
+              ]
+            },
+            {
+              name: '发行歌曲',
+              type: 'pie',
+              radius: ['45%', '60%'],
+              labelLine: {
+                length: 0
+              },
+              label: {
+                formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                backgroundColor: '#F6F8FC',
+                borderColor: '#8C8D8E',
+                borderWidth: 1,
+                borderRadius: 4,
+                rich: {
+                  a: {
+                    color: '#6E7079',
+                    lineHeight: 22,
+                    align: 'center'
+                  },
+                  hr: {
+                    borderColor: '#8C8D8E',
+                    width: '100%',
+                    borderWidth: 1,
+                    height: 0
+                  },
+                  b: {
+                    color: '#4C5058',
+                    fontSize: 14,
+                    fontWeight: 'bold',
+                    lineHeight: 33
+                  },
+                  per: {
+                    color: '#fff',
+                    backgroundColor: '#4C5058',
+                    padding: [3, 4],
+                    borderRadius: 4
+                  }
+                }
+              },
+              data: [
+                { value: 10014, name: 'Male' },
+                { value: 8893, name: 'Female' },
+                { value: 8051, name: 'Group' },
+
+              ]
+            }
+          ]
+        };
+        option && mychart.setOption(option);
+    </script>
+
+    <script>
+        var mychart = echarts.init(document.getElementById('chart-songs10'));
+        option = {
+          title: {
+            text: '热门歌曲TOP10',
+            subtext: 'Hot Songs',
+            left: 'center'
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow'
+            }
+          },
+          legend: {
+            x:'right',
+          },
+          xAxis: {
+            type: 'value'
+          },
+          yAxis: {
+            type: 'category',
+            data: ['e350', 'e2b9', 'd6b8', '1e32', '53b5', '1ace', '8424', 'ab5f', '4acb', '55d8']
+          },
+          series: [
+            {
+              name: '播放量',
+              type: 'bar',
+              stack: 'total',
+              emphasis: {
+                focus: 'series'
+              },
+              data: [276902,188509,161200,139533,127429,116761,114901,103121,114682,92677]
+            },
+            {
+              name: '下载量',
+              type: 'bar',
+              stack: 'total',
+              emphasis: {
+                focus: 'series'
+              },
+              data: [21770,22528,20402,11999,14168,13355,11293,15996,5613,21241]
+            },
+            {
+              name: '收藏量',
+              type: 'bar',
+              stack: 'total',
+              emphasis: {
+                focus: 'series'
+              },
+              data: [2554,1428,1481,837,1124,1236,1007,1497,301,1748]
+            }
+          ]
+        };
+        option && mychart.setOption(option);
+    </script>
+
+</body>
+</html>
+<!--source: [-->
+<!--              ['song', '播放量', '下载量', '收藏量'],-->
+<!--              ['e350', 276902, 21770, 2554],-->
+<!--              ['e2b9', 188509, 22528, 1428],-->
+<!--              ['d6b8', 161200, 20402, 1481],-->
+<!--              ['1e32', 139533, 14342, 1620],-->
+<!--              ['53b5', 127429, 14168, 1393],-->
+<!--              ['1ace', 116761, 13355, 1236],-->
+<!--              ['8424', 114901, 13437, 1316],-->
+<!--              ['ab5f', 103121, 15996, 1497],-->
+<!--              ['4acb', 114682, 13139, 1281],-->
+<!--              ['55d8', 98375, 21241, 1748]-->
+<!--            ]-->
